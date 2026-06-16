@@ -1,1 +1,352 @@
-test
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pragma - Rinascita Civica</title>
+    <!-- Google Fonts per una tipografia moderna e leggibile -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === VARIABILI CROMATICHE E DI STILE === */
+        :root {
+            --pragma-purple: #8C52A1; /* Estratto dal testo PRAGMA */
+            --pragma-purple-dark: #6A3A7C;
+            --pragma-orange: #E87722; /* Estratto dal testo RINASCITA CIVICA */
+            --pragma-orange-dark: #C66219;
+            --text-dark: #2B2B2B;
+            --text-light: #F8F9FA;
+            --bg-light: #FFFFFF;
+            --bg-gray: #F4F4F6;
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        /* === NAVBAR === */
+        header {
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .logo-text .pragma {
+            color: var(--pragma-purple);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-text .rinascita {
+            color: var(--pragma-orange);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: var(--pragma-orange);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            margin-top: 80px; /* Offset for fixed header */
+            background: linear-gradient(135deg, rgba(140, 82, 161, 0.05) 0%, rgba(232, 119, 34, 0.05) 100%);
+            padding: 100px 5%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--pragma-purple);
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--pragma-purple);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(140, 82, 161, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--pragma-purple-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--pragma-orange);
+            border: 2px solid var(--pragma-orange);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--pragma-orange);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* === SEZIONE BATTAGLIE / PROPOSTE === */
+        .battles-section {
+            padding: 80px 5%;
+            background-color: var(--bg-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--pragma-purple);
+            margin-bottom: 50px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+            border-bottom: 5px solid var(--pragma-orange);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--pragma-orange);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--pragma-purple);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--pragma-orange);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 120px 5% 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTESTAZIONE E NAVIGAZIONE -->
+    <header>
+        <div class="logo-container">
+            <!-- SOSTITUISCI IL SRC CON IL PERCORSO REALE DELL'IMMAGINE O INSERISCILA NELLA STESSA CARTELLA -->
+            <img src="immagine.png" alt="Logo Pragma Rinascita Civica">
+            <div class="logo-text">
+                <span class="pragma">PRAGMA</span>
+                <span class="rinascita">RINASCITA CIVICA</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#proposte">Le Nostre Proposte</a></li>
+                <li><a href="#partecipa">Partecipa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SEZIONE EROE (HERO) -->
+    <section class="hero">
+        <!-- Questo slogan è preso direttamente da una delle loro grafiche Instagram -->
+        <h1>UNO SPAZIO POLITICO APERTO.</h1>
+        <p>Per confrontarsi, per scegliere, per costruire. Rimettiamo al centro i cittadini, i diritti e il territorio di Gioia del Colle, oltre le vecchie logiche.</p>
+        <div class="cta-buttons">
+            <a href="#partecipa" class="btn btn-primary">Unisciti al Progetto</a>
+            <a href="https://www.instagram.com/pragma.rinascitacivica/" target="_blank" class="btn btn-secondary">Seguici su Instagram</a>
+        </div>
+    </section>
+
+    <!-- SEZIONE BATTAGLIE / PROPOSTE -->
+    <section id="proposte" class="battles-section">
+        <h2 class="section-title">Le Nostre Battaglie</h2>
+        <div class="grid-container">
+            
+            <!-- Card 1: Basata sui post sul cantiere e la scuola -->
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Decoro e Spazi Pubblici</h3>
+                <p>Cantieri fermi e scuole ignorate non sono un destino ineluttabile. Esigiamo trasparenza sull'edilizia scolastica e sulla rigenerazione urbana per restituire gli spazi a chi li vive.</p>
+            </div>
+
+            <!-- Card 2: Basata sui post del 1° Maggio e CGIL -->
+            <div class="card">
+                <div class="card-icon">✊</div>
+                <h3>Lavoro e Diritti</h3>
+                <p>Senza lavoro non c'è futuro. Siamo al fianco dei lavoratori e promuoviamo politiche locali che favoriscano la dignità sociale, dai bonus rifiuti al supporto alle famiglie.</p>
+            </div>
+
+            <!-- Card 3: Basata sui post in consiglio comunale -->
+            <div class="card">
+                <div class="card-icon">👁️</div>
+                <h3>Trasparenza in Consiglio</h3>
+                <p>La politica non si fa a porte chiuse. Portiamo la voce dei giovani e dei cittadini direttamente nel Consiglio Comunale, rendicontando ogni scelta e votazione.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="partecipa">
+        <h2 class="brand-font" style="margin-bottom: 15px;">PRAGMA - Rinascita Civica</h2>
+        <p>Il cambiamento parte dal basso, dalle nostre strade, dalle nostre idee.</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/pragma.rinascitacivica/" target="_blank">Instagram (@pragma.rinascitacivica)</a>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 30px; color: #888;">
+            &copy; 2026 Pragma - Rinascita Civica. Tutti i diritti riservati.<br>
+            <span style="font-style: italic;">Sito web realizzato con spirito di partecipazione civica.</span>
+        </p>
+    </footer>
+
+    <!-- Semplice script per lo scroll fluido -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
